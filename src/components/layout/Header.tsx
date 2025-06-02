@@ -60,15 +60,15 @@ export default function Header() {
                 </a>
               </li>
               <li className="border border-base-200 rounded-lg bg-base-100 hover:bg-base-200 transition-colors duration-300">
+                 <a href="#projets" className={`block px-4 py-2 ${activeSection === 'projets' ? 'text-primary bg-primary/10' : 'text-base-content'} rounded-lg transition-colors duration-300 flex items-center gap-2`}>
+                    <FontAwesomeIcon icon={faCode} className="w-4 h-4" />
+                    Projets
+                  </a>
+              </li>
+              <li className="border border-base-200 rounded-lg bg-base-100 hover:bg-base-200 transition-colors duration-300">
                 <a href="#formations" className={`block px-4 py-2 ${activeSection === 'formations' ? 'text-primary bg-primary/10' : 'text-base-content'} rounded-lg transition-colors duration-300 flex items-center gap-2`}>
                   <FontAwesomeIcon icon={faUser} className="w-4 h-4" />
                   Formations
-                </a>
-              </li>
-              <li className="border border-base-200 rounded-lg bg-base-100 hover:bg-base-200 transition-colors duration-300">
-                <a href="#projets" className={`block px-4 py-2 ${activeSection === 'projets' ? 'text-primary bg-primary/10' : 'text-base-content'} rounded-lg transition-colors duration-300 flex items-center gap-2`}>
-                  <FontAwesomeIcon icon={faCode} className="w-4 h-4" />
-                  Projets
                 </a>
               </li>
               <li className="border border-base-200 rounded-lg bg-base-100 hover:bg-base-200 transition-colors duration-300">
@@ -116,3 +116,4 @@ export default function Header() {
     </header>
   );
 }
+
