@@ -2,3 +2,47 @@
 @plugin "daisyui" {
     themes: all;
   }
+
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits:false;
+  }
+
+  .card-border-gradient {
+    position: relative;
+    border-radius: 0.5rem; 
+    overflow: hidden; 
+    --angle: 0deg;
+  }
+  
+  .card-border-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1; 
+    padding: 2px; 
+    background: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899);
+    border-radius: inherit; 
+    mask: 
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .card-border-gradient:hover::before {
+    background: conic-gradient(from var(--angle), #3b82f6, #8b5cf6, #ec4899);
+    animation: card-border-rotate 5s linear infinite;
+  }
+
+  @keyframes card-border-rotate {
+    to {
+      --angle: 360deg;
+    }
+  }
+
