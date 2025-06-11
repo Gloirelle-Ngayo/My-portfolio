@@ -11,7 +11,7 @@
 
   .card-border-gradient {
     position: relative;
-    border-radius: 0.5rem; 
+    border-radius: 0.4rem; 
     overflow: hidden; 
     --angle: 0deg;
   }
@@ -32,7 +32,7 @@
       linear-gradient(#fff 0 0);
     mask-composite: exclude;
     -webkit-mask-composite: destination-out;
-    transition: all 0.3s ease-in-out;
+    transition: all 5s ease-in-out;
   }
   
   .card-border-gradient:hover::before {

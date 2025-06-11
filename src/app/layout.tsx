@@ -22,7 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <Header />
-          <main className="container mx-auto px-4">
+          <main className="bg-base-200">
             {children}
           </main>
           <FlowbiteInit />

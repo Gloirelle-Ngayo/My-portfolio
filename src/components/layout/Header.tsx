@@ -46,7 +46,7 @@ export default function Header() {
 
   // Le retour du menu
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-base-300/50 backdrop-blur-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-base-100 backdrop-blur-sm">
       <nav className="border-gray-200">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <span className="self-center text-2xl font-semibold whitespace-nowrap text-base-content">Gloirelle NGAYO</span>

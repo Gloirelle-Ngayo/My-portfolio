@@ -9,12 +9,12 @@ import { motion } from "framer-motion";
  */
 export default function AcceuilSec(){
     return(
-        <section id="accueil" className="min-h-screen flex items-center justify-center bg-base-100 relative">
+        <section id="accueil" className="min-h-screen flex items-center justify-center relative">
             <ParticleNetwork />
             <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-8 relative z-10">
                 <div className="flex-shrink-0 w-[400px] h-[400px] rounded-full overflow-hidden hidden lg:block">
                     <Image 
-                        src="/images/Gloirelle.jpg" 
+                        src="/images/acceuil/Gloirelle.jpg" 
                         alt="Mon image"  
                         width={250}
                         height={250}
@@ -60,9 +60,6 @@ export default function AcceuilSec(){
                     </div>
                 </div>
             </div>
-
-           
-
         </section>
     )
 }

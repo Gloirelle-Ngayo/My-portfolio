@@ -5,7 +5,8 @@ const nextConfig = {
       'cdn.jsdelivr.net',
       'example.com',
       'github.com',
-      'raw.githubusercontent.com'
+      'raw.githubusercontent.com',
+      'xrblyencthiswdvdtpnf.supabase.co'
     ],
   },
 }
