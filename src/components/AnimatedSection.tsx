@@ -8,7 +8,7 @@ interface AnimatedSectionProps {
 
 export default function AnimatedSection({ children, className = '' }: AnimatedSectionProps) {
   return (
-    <motion.section
+    <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 50 }}
@@ -17,6 +17,6 @@ export default function AnimatedSection({ children, className = '' }: AnimatedSe
       className={className}
     >
       {children}
-    </motion.section>
+    </motion.div>
   );
 } 

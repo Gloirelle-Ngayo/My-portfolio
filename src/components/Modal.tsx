@@ -13,6 +13,17 @@ interface Project {
 }
 
 export default function Modal({ project }: { project: Project }){
+    // Vérifier si le projet existe
+    if (!project) {
+        return (
+            <div className="text-center">
+                <button className="btn btn-primary text-center" disabled>
+                    Voir plus
+                </button>
+            </div>
+        );
+    }
+
     const modalId = `modal-${project.id}`;
     
     return(

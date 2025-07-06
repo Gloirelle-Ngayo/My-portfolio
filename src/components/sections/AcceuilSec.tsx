@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import ParticlesClassicBackground from '../ParticlesClassicBackground'
 import AnimatedSection from '../AnimatedSection'
 
 /**
@@ -10,10 +9,9 @@ import AnimatedSection from '../AnimatedSection'
 export default function AcceuilSec(){
     return(
         <section id="accueil" className="min-h-screen flex items-center justify-center relative bg-base-200">
-            <ParticlesClassicBackground />
             <AnimatedSection>
                 <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-8 relative z-10">
-                    <div className="flex-shrink-0 w-[400px] h-[400px] rounded-full overflow-hidden hidden lg:block">
+                    <div className="flex-shrink-0 w-[320px] h-[320px] rounded-full overflow-hidden hidden lg:block">
                         <Image 
                             src="/images/acceuil/Gloirelle.jpg" 
                             alt="Mon image"  

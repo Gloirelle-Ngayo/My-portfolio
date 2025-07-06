@@ -16,22 +16,50 @@ export default function Header() {
   le navigateur et detecter la section qui est active*/
   useEffect(() => {
     const handleScroll = () => {
-      const sections = document.querySelectorAll('section');
-      const scrollPosition = window.scrollY + 100;
+      const sections = document.querySelectorAll('section[id]');
+      const scrollPosition = window.scrollY + 200; // Augmenter l'offset pour une meilleure détection
+
+      let currentSection = 'accueil';
 
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
+        const sectionTop = (section as HTMLElement).offsetTop;
+        const sectionHeight = (section as HTMLElement).offsetHeight;
         const sectionId = section.getAttribute('id');
 
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-          setActiveSection(sectionId || '');
+        // Vérifier si la section est dans le viewport avec une marge
+        const sectionBottom = sectionTop + sectionHeight;
+        const isInView = scrollPosition >= sectionTop - 100 && scrollPosition < sectionBottom - 100;
+        
+        if (isInView) {
+          currentSection = sectionId || 'accueil';
+        }
+        
+        // Si on est au début de la page, sélectionner accueil
+        if (scrollPosition < 300) {
+          currentSection = 'accueil';
         }
       });
+
+      setActiveSection(currentSection);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    // Appeler handleScroll immédiatement pour définir la section initiale
+    handleScroll();
+    
+    // Utiliser throttle pour améliorer les performances
+    let ticking = false;
+    const throttledHandleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', throttledHandleScroll);
+    return () => window.removeEventListener('scroll', throttledHandleScroll);
   }, []);
 
   //variable qui permet de changer de thème, en définissant setTheme()

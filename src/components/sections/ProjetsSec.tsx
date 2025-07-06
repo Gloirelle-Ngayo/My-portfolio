@@ -4,9 +4,8 @@
  */
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
-import Link from 'next/link';
 import ProjectCarousel from '@/components/ProjectCarousel';
-import AnimatedSection from '@/components/AnimatedSection';
+import AnimatedSection from '../AnimatedSection';
 
 interface Project {
     id: string;
@@ -71,7 +70,7 @@ export default function ProjetsSec() {
 
     if (loading) {
         return (
-            <section id="projets" className="min-h-screen py-2 bg-base-100">
+            <section id="projets" className="min-h-screen bg-base-100">
                 <div className="container mx-auto px-4">
                     <div className="flex justify-center items-center h-64">
                         <div className="loading loading-spinner loading-lg"></div>
@@ -82,7 +81,7 @@ export default function ProjetsSec() {
     }
 
     return (
-        <section id="projets" className="min-h-screen py-2">
+        <section id="projets" className="min-h-screen">
             <AnimatedSection>
                 <div className="container mx-auto px-4">
                     <h2 className="text-4xl font-bold text-center mb-12 hover:opacity-90">Mes Projets</h2>
@@ -90,25 +89,27 @@ export default function ProjetsSec() {
                     {/* Section Projets Réseau */}
                     <div className="mb-16">
                         <h3 className="text-2xl font-bold mb-8 text-center">Projets en Réseau</h3>
-                        <ProjectCarousel projects={networkProjects} />
+                        {networkProjects && networkProjects.length > 0 ? (
+                            <ProjectCarousel projects={networkProjects} />
+                        ) : (
+                            <div className="flex justify-center items-center h-32">
+                                <p className="text-base-content/60">Aucun projet réseau disponible</p>
+                            </div>
+                        )}
                     </div>
 
                     {/* Section Projets Programmation */}
                     <div className="mb-16">
                         <h3 className="text-2xl font-bold mb-8 text-center">Projets en Programmation</h3>
-                        <ProjectCarousel projects={programmingProjects} />
+                        {programmingProjects && programmingProjects.length > 0 ? (
+                            <ProjectCarousel projects={programmingProjects} />
+                        ) : (
+                            <div className="flex justify-center items-center h-32">
+                                <p className="text-base-content/60">Aucun projet de programmation disponible</p>
+                            </div>
+                        )}
                     </div>
 
-                    {/* Bouton pour voir tous les projets */}
-                    <div className='mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-8 relative z-10'>
-                        <button className='card-border-gradient'>
-                            <div className='bg-base-100 rounded-lg m-1'>
-                                <Link href="/project">
-                                    <span className="block px-3 py-1 bg-gradient-to-r from-primary/90 via-secondary/90 to-accent/90 bg-clip-text text-transparent hover:opacity-90">Voir tous mes projets</span>
-                                </Link>
-                            </div>
-                        </button>
-                      </div>
                 </div>
             </AnimatedSection>
         </section>
