@@ -12,6 +12,19 @@ interface Project {
     objectives: string[];
 }
 
+// Fonction pour nettoyer et valider l'URL de l'image
+const cleanImageUrl = (url: string | undefined): string => {
+    if (!url) return '';
+    
+    try {
+        // Utiliser trimEnd() comme suggéré dans le message d'erreur
+        return url.trimEnd();
+    } catch (error) {
+        console.error('Erreur lors du nettoyage de l\'URL:', error);
+        return '';
+    }
+};
+
 export default function Modal({ project }: { project: Project }){
     // Vérifier si le projet existe
     if (!project) {
@@ -25,6 +38,7 @@ export default function Modal({ project }: { project: Project }){
     }
 
     const modalId = `modal-${project.id}`;
+    const cleanUrl = cleanImageUrl(project.image_url);
     
     return(
         <div className="text-center">
@@ -45,10 +59,10 @@ export default function Modal({ project }: { project: Project }){
                         </button>
                     </form>
                     
-                    {project.image_url && (
+                    {cleanUrl && (
                         <figure className="mb-4 md:m-1 md:mt-0">
                             <Image 
-                                src={project.image_url} 
+                                src={cleanUrl} 
                                 alt={project.title} 
                                 width={800}
                                 height={400}

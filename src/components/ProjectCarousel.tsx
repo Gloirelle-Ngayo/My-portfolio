@@ -31,7 +31,7 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
       let desktop = false;
   
       if (width >= 1024) {
-        perView = 3;
+        perView = 4;
         desktop = true;
       } else if (width >= 600) {
         perView = 2;
@@ -108,7 +108,7 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
   };
 
   return (
-    <div className="relative w-full overflow-hidden mx-auto max-w-[1000px] flex flex-col items-center">
+    <div className="relative w-full overflow-hidden mx-auto md:max-w-[1000px] flex flex-col items-center">
       <div ref={containerRef} className="w-full overflow-hidden">
         <motion.div
           className="flex"
@@ -181,7 +181,6 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
     </div>
   );
 }
-
 
 
 
