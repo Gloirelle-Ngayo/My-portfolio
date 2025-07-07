@@ -20,8 +20,8 @@ export default function AcceuilSec(){
                             className="w-full h-full object-cover object-top"
                         />
                     </div>
-                    <div className="text-center text-center mt-4">
-                        <h1 className="text-4xl md:text-3xl font-bold mb-4">À propos de moi</h1>
+                    <div className="text-center text-center">
+                        <h1 className="text-2xl md:text-3xl font-bold mt-10 md:mb-8">À propos de moi</h1>
                         <h2 className='italic opacity-80 text-xl md:text-medium mb-4'>Technicienne en réseaux et télécommunications / Développeuse web</h2>
                         <p className="text-xl md:text-medium text-center md:text-justify">
                                 Je suis passionnée par les technologies et motivée par 

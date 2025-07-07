@@ -33,7 +33,7 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
       if (width >= 1024) {
         perView = 3;
         desktop = true;
-      } else if (width >= 480) {
+      } else if (width >= 600) {
         perView = 2;
       }
   
@@ -95,9 +95,9 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
       scale: isCenter ? 1 : 0.92,
       opacity: isCenter ? 1 : 0.6,
       zIndex: isCenter ? 10 : 5,
-      boxShadow: isCenter ? '0 8px 16px rgba(0,0,0,0.25)' : 'none',
-      marginLeft: isCenter && cardsPerView > 1 ? '-5%' : 0,
-      marginRight: isCenter && cardsPerView > 1 ? '-5%' : 0,
+      boxShadow: isCenter ? '0px 64px 80px rgba(0, 0, 0, 0.15)' : 'none',
+      marginLeft: isCenter && cardsPerView > 1 ? '-2%' : 0,
+      marginRight: isCenter && cardsPerView > 1 ? '-2%' : 0,
     };
   };
   

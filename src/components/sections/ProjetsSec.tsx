@@ -84,7 +84,7 @@ export default function ProjetsSec() {
         <section id="projets" className="min-h-screen">
             <AnimatedSection>
                 <div className="container mx-auto px-4">
-                    <h2 className="text-4xl font-bold text-center mb-12 hover:opacity-90">Mes Projets</h2>
+                    <h2 className="text-4xl font-bold text-center mb-5 hover:opacity-90">Mes Projets</h2>
 
                     {/* Section Projets Réseau */}
                     <div className="mb-16">
