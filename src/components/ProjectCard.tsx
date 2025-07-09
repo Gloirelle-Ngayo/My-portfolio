@@ -22,7 +22,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="card-border-gradient bg-base-100 duration-300 backdrop-blur-sm h-auto w-full md:w-[300px] flex flex-col"
+                    className="card-border-gradient bg-base-100 duration-300 backdrop-blur-sm h-auto w-full md:w-[290px] flex flex-col"
                 >
                     {project.image_url && (
                         <figure className="p-1 h-[140px] md:h-[180px]">

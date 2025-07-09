@@ -23,36 +23,34 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const totalCards = projects.length;
 
-  // Gère le redimensionnement pour cartes responsives
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
       let perView = 1;
       let desktop = false;
-  
+
       if (width >= 1024) {
-        perView = 4;
+        perView = 5;
         desktop = true;
       } else if (width >= 600) {
         perView = 2;
       }
-  
+
       setIsDesktop(desktop);
       setCardsPerView(perView);
-  
+
       if (containerRef.current) {
         const containerWidth = containerRef.current.offsetWidth;
         const adjustedCardWidth = containerWidth / perView;
         setCardWidth(adjustedCardWidth);
       }
     };
-  
+
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Total de "pages" pour pagination intelligente
   const totalPages = Math.max(1, totalCards - cardsPerView + 1);
 
   const getPaginationNumbers = () => {
@@ -77,44 +75,37 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
   };
 
   const getCardStyle = (index: number) => {
-    let isCenter = false;
-  
-    if (cardsPerView === 1) {
-      // Mobile : la seule carte visible
-      isCenter = index === currentIndex;
-    } else if (cardsPerView === 2) {
-      // Tablette : on met en avant la première carte visible
-      isCenter = index === currentIndex + 1;
-    } else {
-      // Desktop : carte du milieu
-      const middleIndex = currentIndex + Math.floor(cardsPerView / 2);
-      isCenter = index === middleIndex;
+    let centerIndex = currentIndex;
+
+    if (cardsPerView === 2) {
+      centerIndex += 1;
+    } else if (cardsPerView >= 3) {
+      centerIndex += Math.floor(cardsPerView / 2);
     }
-  
-    return {
-      scale: isCenter ? 1 : 0.92,
-      opacity: isCenter ? 1 : 0.6,
-      zIndex: isCenter ? 10 : 5,
-      boxShadow: isCenter ? '0px 64px 80px rgba(0, 0, 0, 0.15)' : 'none',
-      marginLeft: isCenter && cardsPerView > 1 ? '-2%' : 0,
-      marginRight: isCenter && cardsPerView > 1 ? '-2%' : 0,
-    };
+
+    const distance = Math.abs(index - centerIndex);
+
+    const scale = distance === 0 ? 1 : distance === 1 ? 0.92 : 0.85;
+    const opacity = distance === 0 ? 1 : distance === 1 ? 0.6 : 0.4;
+    const zIndex = 10 - distance; // plus éloigné = en dessous
+    const boxShadow = distance === 0 ? '0px 64px 80px rgba(0, 0, 0, 0.15)' : 'none';
+    const marginOffset = distance === 0 && cardsPerView > 1 ? '-1%' : 0;
+
+    return { scale, opacity, zIndex, boxShadow, marginLeft: marginOffset, marginRight: marginOffset };
   };
-  
-  
 
   const getScrollPosition = () => {
-    return -currentIndex * (cardWidth);
+    return -currentIndex * cardWidth;
   };
 
   return (
-    <div className="relative w-full overflow-hidden mx-auto md:max-w-[1000px] flex flex-col items-center">
+    <div className="relative w-full overflow-hidden mx-auto md:max-w-[1150px] flex flex-col items-center">
       <div ref={containerRef} className="w-full overflow-hidden">
         <motion.div
           className="flex"
           animate={{ x: getScrollPosition() }}
           transition={{ type: 'spring', stiffness: 60, damping: 20 }}
-          style={{ width: totalCards * (cardWidth) }}
+          style={{ width: totalCards * cardWidth }}
         >
           {projects.map((project, index) => {
             const style = getCardStyle(index);
@@ -133,7 +124,7 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
                   scale: style.scale,
                   opacity: style.opacity,
                 }}
-                transition={{ type: 'spring', stiffness: 60, damping: 20 }}
+                transition={{ type: 'spring', stiffness: 100, damping: 20 }}
               >
                 <ProjectCard project={project} />
               </motion.div>
@@ -181,6 +172,7 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
     </div>
   );
 }
+
 
 
 
