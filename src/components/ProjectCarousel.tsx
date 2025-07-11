@@ -86,10 +86,10 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
     const distance = Math.abs(index - centerIndex);
 
     const scale = distance === 0 ? 1 : distance === 1 ? 0.92 : 0.85;
-    const opacity = distance === 0 ? 1 : distance === 1 ? 0.6 : 0.4;
+    const opacity = distance === 0 ? 1 : distance === 1 ? 0.8 : 0.6;
     const zIndex = 10 - distance; // plus éloigné = en dessous
     const boxShadow = distance === 0 ? '0px 64px 80px rgba(0, 0, 0, 0.15)' : 'none';
-    const marginOffset = distance === 0 && cardsPerView > 1 ? '-1%' : 0;
+    const marginOffset = distance === 0 && cardsPerView > 1 ? '-0.3%' : 0;
 
     return { scale, opacity, zIndex, boxShadow, marginLeft: marginOffset, marginRight: marginOffset };
   };
