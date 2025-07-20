@@ -57,7 +57,7 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
 
       if (width >= 1024) {
         perView = 5; // Desktop: 5 cards
-      } else if (width >= 768) {
+      } else if (width >= 564) {
         perView = 2; // Tablet: 2 cards (changed from 600px to 768px)
       } else {
         perView = 1; // Mobile: 1 card
@@ -112,18 +112,30 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
     }
   };
 
+  function getPaginationNumbers(total: number, current: number) {
+    if (total <= 5) return Array.from({ length: total }, (_, i) => i);
+
+    if (current <= 2) {
+      return [0, 1, 2, '...', total - 1];
+    } else if (current >= total - 3) {
+      return [0, '...', total - 3, total - 2, total - 1];
+    } else {
+      return [0, '...', current, '...', total - 1];
+    }
+  }
+
   return (
     <section className="w-full flex-col items-center justify-center font-sans overflow-hidden">
       <div 
-        className="w-full mx-auto p-4"
+        className="w-full mx-auto md:pb-4"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
         <div className="relative flex w-full flex-col rounded-3xl md:p-6">
 
           {/* Carousel Container */}
-          <div className="relative w-full h-[280px] md:h-[400px] flex items-center justify-center overflow-hidden px-14">
-            <motion.div
+          <div className="relative w-full h-[350px] md:h-[400px] flex items-center justify-center overflow-hidden py-14">
+        <motion.div
                   className="w-full h-full flex items-center justify-center"
                   drag="x"
                   dragConstraints={{ left: 0, right: 0 }}
@@ -146,33 +158,41 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
           {/* Navigation and Indicators */}
           <div className="flex items-center justify-center gap-6 mt-6">
             {/* Previous Button */}
-            <button
-                  onClick={() => changeSlide(activeIndex - 1)}
-                  className="p-2 rounded-full bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-300 dark:border-white/10 text-gray-700 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500"
-            >
-                  <ChevronLeftIcon className="w-6 h-6" />
-            </button>
+              <button
+                        onClick={() => changeSlide(activeIndex - 1)}
+                        className="p-2 rounded-full hover:bg-pink-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500 dark:bg-pink-900 dark:text-pink-200 dark:hover:bg-pink-700"
+              >
+                      <ChevronLeftIcon className="w-6 h-6" />
+             </button>
 
             {/* Dot Indicators */}
             <div className="flex items-center justify-center gap-2">
-              {projects.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => changeSlide(index)}
-                  className={`h-2 rounded-full transition-all duration-300 focus:outline-none ${
-                    activeIndex === index ? 'w-6 bg-pink-400' : 'w-2 bg-gray-300 dark:bg-neutral-600 hover:bg-gray-400 dark:hover:bg-neutral-500'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
+              {getPaginationNumbers(projects.length, activeIndex).map((item, idx) =>
+                item === '...' ? (
+                  <span key={idx} className="text-gray-400 select-none">...</span>
+                ) : (
+                  <button
+                    key={item}
+                    onClick={() => changeSlide(Number(item))}
+                    className={`px-2 py-1 rounded font-semibold text-sm transition-all duration-300
+                      ${activeIndex === item
+                        ? 'bg-pink-800 text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-pink-100 dark:bg-neutral-600 dark:text-white dark:hover:bg-pink-900'}
+                    `}
+                    aria-label={`Go to slide ${Number(item) + 1}`}
+                  >
+                    {Number(item) + 1}
+                  </button>
+                )
+              )}
             </div>
 
             {/* Next Button */}
             <button
               onClick={() => changeSlide(activeIndex + 1)}
-              className="p-2 rounded-full bg-gray-100 dark:bg-white/5 hover:bg-gray-200 dark:hover:bg-white/10 border border-gray-300 dark:border-white/10 text-gray-700 dark:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500"
+              className="p-2 rounded-full hover:bg-pink-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500 dark:bg-pink-900 dark:text-pink-200 dark:hover:bg-pink-700"
             >
-              <ChevronRightIcon className="w-6 h-6" />
+              <ChevronRightIcon className="w-6 h-6"/>
             </button>
           </div>
         </div>
@@ -200,7 +220,6 @@ function CarouselCard({ card, index, activeIndex, totalCards, cardsPerView }: Ca
   const scale = offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.92 : 0.8;
   const opacity = offset === 0 ? 1 : Math.abs(offset) === 1 ? 0.95 : 0.90;
   const zIndex = 10 - Math.abs(offset);
-  const boxShadow = offset === 0 ? '0px 14px 20px rgba(0, 0, 0, 0.1)' : 'none';
 
   // Calculate card width based on cardsPerView with proper spacing
   const getCardWidth = () => {
@@ -236,7 +255,6 @@ function CarouselCard({ card, index, activeIndex, totalCards, cardsPerView }: Ca
       className={`absolute ${getCardWidth()} h-[95%]`}
       style={{
         transformStyle: 'preserve-3d',
-        boxShadow: boxShadow,
       }}
       animate={animate}
       initial={false} // Prevents initial animation on page load
