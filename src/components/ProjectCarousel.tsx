@@ -156,14 +156,14 @@ export default function ProjectCarousel({ projects }: { projects: Project[] }) {
       </div>
 
           {/* Navigation and Indicators */}
-          <div className="flex items-center justify-center gap-6 mt-6">
+          <div className="flex items-center justify-center gap-6 mt-2">
             {/* Previous Button */}
-              <button
-                        onClick={() => changeSlide(activeIndex - 1)}
-                        className="p-2 rounded-full hover:bg-pink-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500 dark:bg-pink-900 dark:text-pink-200 dark:hover:bg-pink-700"
-              >
-                      <ChevronLeftIcon className="w-6 h-6" />
-             </button>
+        <button
+            onClick={() => changeSlide(activeIndex - 1)}
+            className="p-2 rounded-full hover:bg-pink-400 hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500 dark:bg-pink-900 dark:text-pink-200 dark:hover:bg-pink-700"
+        >
+            <ChevronLeftIcon className="w-6 h-6" />
+        </button>
 
             {/* Dot Indicators */}
             <div className="flex items-center justify-center gap-2">
