@@ -39,27 +39,27 @@ function Timeline({ cursus }: { cursus: Cursus[] }) {
             {/* Point de la ligne */}
             <span className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20 h-5 w-5 rounded-full ring-4 ring-pink-500 bg-base-100" />
 
-            {/* Carte animée unifiée */}
+            {/* Carte animée */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2, duration: 0.6 }}
-              className="flex flex-col md:flex-row md:items-center card-border-gradient bg-base-100 duration-300 backdrop-blur-sm rounded-lg shadow overflow-hidden"
+              className="flex flex-col lg:flex-row lg:items-center card-border-gradient bg-base-100 duration-300 backdrop-blur-sm rounded-lg shadow overflow-hidden"
             >
               {item.image_url && (
-                <div className="w-full md:w-1/3 p-4">
+                <div className="w-full lg:w-1/3 p-4 flex justify-center items-center">
                   <Image
                     src={item.image_url}
                     alt={item.title}
                     width={300}
                     height={200}
-                    className="w-full h-auto object-contain rounded"
+                    className="w-full h-48 object-cover rounded"
                   />
                 </div>
               )}
 
-              <div className="flex-1 p-4 text-center md:text-left">
+              <div className="flex-1 p-4 text-center lg:text-left">
                 <time className="font-mono italic text-xs text-gray-500 dark:text-gray-400 block mb-1">
                   {item.date}
                 </time>
@@ -79,7 +79,6 @@ function Timeline({ cursus }: { cursus: Cursus[] }) {
 }
 
 
-
 // --- Certificates Component ---
 
 function Certificates({ certificates }: { certificates: Certificate[] }) {
@@ -93,24 +92,30 @@ function Certificates({ certificates }: { certificates: Certificate[] }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: idx * 0.2, duration: 0.6 }}
-            className="flex flex-col md:flex-row md:items-center card-border-gradient bg-base-100 duration-300 backdrop-blur-sm rounded-lg shadow overflow-hidden"
+            className="flex flex-row items-center card-border-gradient bg-base-100 duration-300 backdrop-blur-sm rounded-lg shadow overflow-hidden"
           >
             {cert.image_url && (
-              <div className="w-full md:w-1/3 p-4">
+              <div className="p-3 flex-shrink-0 hidden  min-[320px]:block">
                 <Image
                   src={cert.image_url}
                   alt={cert.title}
-                  width={300}
-                  height={200}
-                  className="w-full h-auto object-contain rounded"
+                  width={120}
+                  height={96}
+                  className="w-28 h-24 object-cover rounded"
                 />
               </div>
             )}
 
-            <div className="flex-1 p-4 text-center md:text-left">
-              <h5 className="font-semibold text-pink-500 dark:text-pink-400">{cert.title}</h5>
-              <p className="text-sm text-gray-500 dark:text-gray-300">{cert.issuer}</p>
-              <p className="text-xs text-gray-400 dark:text-gray-400">{cert.date}</p>
+            <div className="flex-1 p-4 text-left overflow-hidden">
+              <h5 className="font-semibold text-pink-500 dark:text-pink-400">
+                {cert.title}
+              </h5>
+              <p className="text-sm text-gray-500 dark:text-gray-300">
+                {cert.issuer}
+              </p>
+              <p className="text-xs text-gray-400 dark:text-gray-400">
+                {cert.date}
+              </p>
               {cert.link && (
                 <a
                   href={cert.link}
@@ -131,6 +136,7 @@ function Certificates({ certificates }: { certificates: Certificate[] }) {
     </section>
   );
 }
+
 
 
 // --- Main Section ---
