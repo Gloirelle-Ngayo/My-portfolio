@@ -11,6 +11,7 @@ type Cursus = {
   title: string;
   description: string;
   image_url?: string;
+  status: string;
 };
 
 type Certificate = {
@@ -58,17 +59,28 @@ function Timeline({ cursus }: { cursus: Cursus[] }) {
                   />
                 </div>
               )}
-
               <div className="flex-1 p-4 text-center lg:text-left">
-                <time className="font-mono italic text-xs text-gray-500 dark:text-gray-400 block mb-1">
+                <time className="font-mono italic text-xs text-base-content/80 block mb-1">
                   {item.date}
                 </time>
                 <h3 className="text-lg font-black text-pink-600 dark:text-pink-400 mb-1">
                   {item.title}
                 </h3>
-                <p className="text-sm text-gray-700 dark:text-gray-300">
+                <p className="text-sm text-base-content/80">
                   {item.description}
                 </p>
+                <div className="flex items-center justify-between mt-4">
+                <span
+                  className={`text-sm ml-auto px-4 py-2 rounded-full font-medium shadow-sm ${
+                    item.status?.trim().toLowerCase() === "en cours"
+                      ? "bg-yellow-200 text-yellow-700"
+                      : "bg-green-200 text-green-700"
+                  }`}
+                >
+                  {item.status?.trim().toLowerCase() === "en cours" ? "En cours" : "Complété"}
+                </span>
+                </div>
+
               </div>
             </motion.div>
           </li>
@@ -110,10 +122,10 @@ function Certificates({ certificates }: { certificates: Certificate[] }) {
               <h5 className="font-semibold text-pink-500 dark:text-pink-400">
                 {cert.title}
               </h5>
-              <p className="text-sm text-gray-500 dark:text-gray-300">
+              <p className="text-sm text-base-content/80">
                 {cert.issuer}
               </p>
-              <p className="text-xs text-gray-400 dark:text-gray-400">
+              <p className="text-xs text-base-content/80">
                 {cert.date}
               </p>
               {cert.link && (
@@ -126,7 +138,7 @@ function Certificates({ certificates }: { certificates: Certificate[] }) {
                   Voir le certificat
                 </a>
               )}
-              <div className="mt-2 text-sm text-gray-700 dark:text-gray-300">
+              <div className="mt-2 text-sm text-base-content/80">
                 {cert.description}
               </div>
             </div>
@@ -136,7 +148,6 @@ function Certificates({ certificates }: { certificates: Certificate[] }) {
     </section>
   );
 }
-
 
 
 // --- Main Section ---
