@@ -1,23 +1,26 @@
-'use client'
+'use client';
 import React from 'react';
 
-// The main App component that renders our ShimmerButton
-export default function ShimmerButton() {
+type ShimmerButtonProps = {
+  onClick?: () => void;
+  loading?: boolean;
+  text?: string;
+  disabled?: boolean;
+};
+
+export default function ShimmerButton({
+  onClick,
+  loading = false,
+  text = "Envoyer",
+  disabled = false,
+}: ShimmerButtonProps) {
   const customCss = `
-    /* This is the key to the seamless animation.
-      The @property rule tells the browser that '--angle' is a custom property
-      of type <angle>. This allows the browser to smoothly interpolate it
-      during animations, preventing the "jump" at the end of the loop.
-    */
     @property --angle {
       syntax: '<angle>';
       initial-value: 0deg;
       inherits: false;
     }
 
-    /* The keyframe animation simply transitions the --angle property
-      from its start (0deg) to its end (360deg).
-    */
     @keyframes shimmer-spin {
       to {
         --angle: 360deg;
@@ -26,19 +29,22 @@ export default function ShimmerButton() {
   `;
 
   return (
-    // Main container to center the button on the page
     <div className="flex items-center justify-center font-sans">
       <style>{customCss}</style>
-      <button className="relative inline-flex items-center justify-center p-[1.5px] bg-gray-300 dark:bg-black rounded-full overflow-hidden group">
-        <div 
+      <button
+        onClick={onClick}
+        disabled={disabled || loading}
+        className="relative inline-flex items-center justify-center p-[2px] rounded-full overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
+      >
+        <div
           className="absolute inset-0"
           style={{
-            background: 'conic-gradient(from var(--angle), transparent 25%,rgb(3, 217, 255), transparent 50%)',
+            background: 'conic-gradient(from var(--angle), transparent 50%, #850df7, transparent 100%)',
             animation: 'shimmer-spin 2.5s linear infinite',
           }}
         />
-        <span className="relative z-10 inline-flex items-end justify-end w-full h-full px-8 py-1 font-semibold text-pink-500 dark:text-pink-400 bg-base-100 rounded-full group-hover:bg-gray-100 dark:group-hover:bg-gray-800 transition-colors duration-300">
-          Envoyer
+        <span className="relative z-10 inline-flex items-center justify-center w-full h-full px-8 py-1 font-semibold text-pink-500 dark:text-pink-400 bg-base-100 rounded-full transition-colors duration-300">
+          {loading ? "Envoi..." : text}
         </span>
       </button>
     </div>
