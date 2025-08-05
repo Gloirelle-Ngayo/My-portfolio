@@ -6,6 +6,7 @@ import AnimatedSection from '../AnimatedSection'
  * Définition du section Acceuil 
  * L'id est relié avec les liens dans le Header
  */
+
 export default function AcceuilSec(){
     return(
         <section id="accueil" className="min-h-screen flex items-center justify-center relative bg-base-200">

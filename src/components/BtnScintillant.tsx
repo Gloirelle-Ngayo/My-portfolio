@@ -2,14 +2,12 @@
 import React from 'react';
 
 type ShimmerButtonProps = {
-  onClick?: () => void;
   loading?: boolean;
   text?: string;
   disabled?: boolean;
 };
 
 export default function ShimmerButton({
-  onClick,
   loading = false,
   text = "Envoyer",
   disabled = false,
@@ -32,7 +30,7 @@ export default function ShimmerButton({
     <div className="flex items-center justify-center font-sans">
       <style>{customCss}</style>
       <button
-        onClick={onClick}
+        type="submit"
         disabled={disabled || loading}
         className="relative inline-flex items-center justify-center p-[2px] rounded-full overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
       >

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import Header from "@/components/layout/Header";
 import FlowbiteInit from "./flowbite-init";
+import Footer from "@/components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +26,7 @@ export default function RootLayout({
           <main className="bg-base-200">
             {children}
           </main>
+          <Footer />
           <FlowbiteInit />
         </Providers>
       </body>

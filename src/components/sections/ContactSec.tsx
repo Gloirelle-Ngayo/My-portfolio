@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import AnimatedSection from "../AnimatedSection";
@@ -12,6 +12,7 @@ export default function ContactSec() {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [feedback, setFeedback] = useState("");
+  const [feedbackColor, setFeedbackColor] = useState<"green" | "red">("green");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,19 +30,30 @@ export default function ContactSec() {
 
       if (res.ok) {
         setFeedback("Message envoyé avec succès !");
+        setFeedbackColor("green");
         setEmail("");
         setSubject("");
         setMessage("");
       } else {
         setFeedback("Erreur : " + data.error);
+        setFeedbackColor("red");
       }
     } catch (err) {
       console.error(err);
       setFeedback("Erreur lors de l’envoi.");
+      setFeedbackColor("red");
     } finally {
       setLoading(false);
     }
   };
+
+  // Auto hide feedback after 5 seconds
+  useEffect(() => {
+    if (feedback) {
+      const timer = setTimeout(() => setFeedback(""), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [feedback]);
 
   return (
     <section id="contact" className="min-h-screen flex items-center justify-center bg-base-300/50">
@@ -108,14 +120,23 @@ export default function ContactSec() {
                   required
                 ></textarea>
               </div>
-              
+
+              {/* Bouton d'envoi */}
               <BtnScintillant
-                onClick={handleSubmit}
-                loading={loading}
                 text="Envoyer"
+                loading={loading}
+                disabled={loading}
               />
+
+              {/* Message d’alerte */}
               {feedback && (
-                <p className="text-center text-sm mt-2 text-green-500">{feedback}</p>
+                <p
+                  className={`text-center text-sm ${
+                    feedbackColor === "green" ? "text-green-500 bg-green/10 p-4 border-1 border-green/20 rounded-md" : "text-red-500 bg-primary/10 p-4 border-1 border-primary/20 rounded-md"
+                  }`}
+                >
+                  {feedback}
+                </p>
               )}
             </motion.form>
           </div>
