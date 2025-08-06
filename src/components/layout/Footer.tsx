@@ -14,13 +14,13 @@ export default function Footer() {
 
         {/* Réseaux sociaux */}
         <div className="flex space-x-4">
-          <a href="https://github.com/tonpseudo" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/Gloirelle-Ngayo" target="_blank" rel="noopener noreferrer">
             <FaGithub className="w-5 h-5 hover:text-pink-500 transition-colors" />
           </a>
-          <a href="https://linkedin.com/in/tonprofil" target="_blank" rel="noopener noreferrer">
+          <a href="www.linkedin.com/in/gloirelle-ngayo" target="_blank" rel="noopener noreferrer">
             <FaLinkedin className="w-5 h-5 hover:text-pink-500 transition-colors" />
           </a>
-          <a href="mailto:tonadresse@email.com">
+          <a href="mailto:gloirengayo@email.com">
             <FaEnvelope className="w-5 h-5 hover:text-pink-500 transition-colors" />
           </a>
         </div>
