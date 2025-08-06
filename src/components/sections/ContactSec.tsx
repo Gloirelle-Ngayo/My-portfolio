@@ -89,7 +89,7 @@ export default function ContactSec() {
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="space-y-4 w-full"
+              className="space-y-4 w-full mb-5"
             >
               <div className="p-2 card-border-gradient backdrop-blur-sm bg-base-100 text-sm">
                 <input
@@ -132,7 +132,7 @@ export default function ContactSec() {
               {feedback && (
                 <p
                   className={`text-center text-sm ${
-                    feedbackColor === "green" ? "text-green-500 bg-green/10 p-4 border-1 border-green/20 rounded-md" : "text-red-500 bg-primary/10 p-4 border-1 border-primary/20 rounded-md"
+                    feedbackColor === "green" ? "text-green-500 p-4 border-1 border-green/20 rounded-md" : "text-red-500 bg-primary/10 p-4 border-1 border-primary/20 rounded-md"
                   }`}
                 >
                   {feedback}

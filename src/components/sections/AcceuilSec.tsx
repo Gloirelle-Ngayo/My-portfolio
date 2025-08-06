@@ -12,7 +12,7 @@ export default function AcceuilSec(){
         <section id="accueil" className="min-h-screen flex items-center justify-center relative bg-base-200">
             <AnimatedSection>
                 <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-8 relative z-10">
-                    <div className="flex-shrink-0 w-[320px] h-[320px] rounded-full overflow-hidden hidden lg:block">
+                    <div className="flex-shrink-0 mt-25 w-[320px] h-[320px] rounded-full overflow-hidden hidden lg:block">
                         <Image 
                             src="/images/acceuil/Gloirelle.jpg" 
                             alt="Mon image"  
@@ -21,8 +21,8 @@ export default function AcceuilSec(){
                             className="w-full h-full object-cover object-top"
                         />
                     </div>
-                    <div className="text-center text-center">
-                        <h1 className="text-2xl md:text-3xl font-bold mt-10 md:mb-8">À propos de moi</h1>
+                    <div className="text-center text-center md:mb-10">
+                        <h1 className="text-2xl md:text-3xl font-bold mt-30">À propos de moi</h1>
                         <h2 className='italic opacity-80 text-xl md:text-medium mb-4'>Technicienne en réseaux et télécommunications / Développeuse web</h2>
                         <p className="text-xl md:text-medium text-center md:text-justify">
                                 Je suis passionnée par les technologies et motivée par 

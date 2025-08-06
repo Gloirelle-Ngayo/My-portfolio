@@ -17,7 +17,7 @@ export default function Footer() {
           <a href="https://github.com/Gloirelle-Ngayo" target="_blank" rel="noopener noreferrer">
             <FaGithub className="w-5 h-5 hover:text-pink-500 transition-colors" />
           </a>
-          <a href="www.linkedin.com/in/gloirelle-ngayo" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.linkedin.com/in/gloirelle-ngayo/" target="_blank" rel="noopener noreferrer">
             <FaLinkedin className="w-5 h-5 hover:text-pink-500 transition-colors" />
           </a>
           <a href="mailto:gloirengayo@email.com">
